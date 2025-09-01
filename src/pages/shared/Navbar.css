@@ -1,0 +1,16 @@
+a.active{
+ border-bottom: 3px solid #0230d6ee;   
+}
+.dark-toggle {
+  background-color: white;
+  /* color: black; */
+  transition: background-color 0.3s ease, color 0.3s ease; 
+}
+
+.dark-toggle.dark {
+  background-color: #095000;
+  color: #eee;
+}
+.dark-toggle > svg-dark-toggle.dark {
+    color: white;
+}
