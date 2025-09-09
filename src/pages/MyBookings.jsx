@@ -1,11 +1,11 @@
 import React from 'react';
 
-const Packages = () => {
+const MyBookings = () => {
     return (
         <div>
-            Packages
+            MyBookings
         </div>
     );
 };
 
-export default Packages;
+export default MyBookings;

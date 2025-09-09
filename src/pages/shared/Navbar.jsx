@@ -1,9 +1,12 @@
 // import React, { use } from 'react';
+import { use } from 'react';
 import { Link, NavLink } from 'react-router';
 import Swal from 'sweetalert2';
+import { AuthContext } from '../../contexts/AuthContext/AuthContext';
 
 const Navbar = () => {
-    const user = 'y';
+    const {user, signOutUser} = use(AuthContext);
+    const bookings = '';
 
     const listItems = <>
         <NavLink to="/" className="text-blue-500 dark-toggle border-b-3 border-transparent hover:border-blue-400 font-bold px-2 mx-3">Home</NavLink>
@@ -13,13 +16,13 @@ const Navbar = () => {
                 <NavLink to="/myBookings" className="text-blue-500 dark-toggle border-b-3 border-transparent hover:border-blue-400 px-2 font-bold mx-3 relative">
                     {/* if bookings available, implement condition */}
                     My Bookings
-                    <div className="badge badge-sm text-white bg-blue-400 font-semibold text-xs bottom-2 w-2 rounded-full border-0 absolute">{''}</div>
+                    <div className="badge badge-sm text-white bg-blue-400 font-semibold text-xs bottom-2 w-2 rounded-full border-0 absolute">{bookings ? bookings : 0}</div>
                 </NavLink>
                 :
                 ''
         }
 
-        <NavLink to="/addplants" className="text-blue-500 dark-toggle border-b-3 border-transparent hover:border-blue-400 px-2 font-bold mx-3">About Us</NavLink>
+        <NavLink to="/about" className="text-blue-500 dark-toggle border-b-3 border-transparent hover:border-blue-400 px-2 font-bold mx-3">About Us</NavLink>
 
     </>
 
@@ -28,19 +31,19 @@ const Navbar = () => {
 
     const handleLogout = () => {
 
-        // logOut()
-        //     .then(() => {
-        //         Swal.fire({
-        //             position: "top-end",
-        //             icon: "warning",
-        //             title: "Logged Out Successfully!",
-        //             showConfirmButton: false,
-        //             timer: 1200
-        //         });
-        //     })
-        //     .catch(e => {
-        //         console.log(e);
-        //     })
+        signOutUser()
+            .then(() => {
+                Swal.fire({
+                    position: "top-end",
+                    icon: "warning",
+                    title: "Logged Out Successfully!",
+                    showConfirmButton: false,
+                    timer: 1200
+                });
+            })
+            .catch(e => {
+                console.log(e);
+            })
     }
 
 

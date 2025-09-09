@@ -1,11 +1,11 @@
 import React from 'react';
 
-const Packages = () => {
+const About = () => {
     return (
         <div>
-            Packages
+            about
         </div>
     );
 };
 
-export default Packages;
+export default About;
