@@ -2,7 +2,7 @@ import React from 'react';
 
 const Home = () => {
     return (
-        <div>
+        <div className='bg-amber-100 dark-toggle'>
             Home
         </div>
     );

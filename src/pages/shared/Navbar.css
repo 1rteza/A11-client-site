@@ -1,5 +1,5 @@
 a.active{
- border-bottom: 3px solid #0230d6ee;   
+ border-bottom: 3px solid #428dff;   
 }
 .dark-toggle {
   background-color: white;
@@ -8,7 +8,7 @@ a.active{
 }
 
 .dark-toggle.dark {
-  background-color: #095000;
+  background-color: #2102d2;
   color: #eee;
 }
 .dark-toggle > svg-dark-toggle.dark {

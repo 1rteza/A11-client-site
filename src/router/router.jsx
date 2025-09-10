@@ -6,6 +6,10 @@ import Login from "../pages/Login";
 import Packages from "../pages/Packages";
 import MyBookings from "../pages/MyBookings";
 import About from "../pages/About";
+import Loading from "../pages/Loading";
+import PrivateRoute from "../contexts/PrivateRoute";
+import MyPackages from "../pages/MyPackages";
+import AddPackages from "../pages/AddPackages";
 
 const router = createBrowserRouter([
   {
@@ -14,7 +18,8 @@ const router = createBrowserRouter([
     children: [
       {
         index: true,
-        Component: Home
+        // hydrateFallbackElement: <Loading></Loading>,
+        Component: Home,
       },
       {
         path: '/register',
@@ -30,7 +35,24 @@ const router = createBrowserRouter([
       },
       {
         path: '/myBookings',
-        Component: MyBookings,
+        element:
+          <PrivateRoute>
+            <MyBookings></MyBookings>
+          </PrivateRoute>
+      },
+      {
+        path: '/myPackages',
+        element:
+          <PrivateRoute>
+            <MyPackages></MyPackages>
+          </PrivateRoute>
+      },
+      {
+        path: '/addPackage',
+        element:
+          <PrivateRoute>
+            <AddPackages></AddPackages>
+          </PrivateRoute>
       },
       {
         path: '/about',
