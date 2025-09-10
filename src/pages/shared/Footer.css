@@ -1,0 +1,10 @@
+.footer.dark {
+  background: linear-gradient(to top, #020617, #0c0a64);
+    border-top: 0;
+  color: #e2e8f0; /* slate-200 */
+}
+.footer > a:hover{
+     background-color: transparent;
+     background-color: transparent;
+     color: black;
+}

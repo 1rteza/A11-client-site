@@ -10,11 +10,23 @@ const Navbar = ({ toggleDarkMode }) => {
     const bookings = '';
 
     const listItems = <>
-        <NavLink to="/" className="text-blue-400 dark-toggle border-b-3 border-transparent hover:border-blue-400 font-bold px-2 mx-3">Home</NavLink>
-        <NavLink to="/allPackages" className="text-blue-400 dark-toggle border-b-3 border-transparent hover:border-blue-400 px-2 font-bold mx-3">All Packages</NavLink>
+        <NavLink to="/" className="px-4 mx-3 rounded-xl text-blue-400
+        bg-white/10 backdrop-blur-md border border-white/20 
+        transition-all duration-300 hover:bg-gradient-to-r hover:from-blue-500 hover:to-sky-400 
+        hover:text-white 
+            font-bold text-xs md:text-sm dark-toggle">Home</NavLink>
+        <NavLink to="/allPackages" className="px-4 mx-3 rounded-xl text-blue-400
+        bg-white/10 backdrop-blur-md border border-white/20 
+        transition-all duration-300 hover:bg-gradient-to-r hover:from-blue-500 hover:to-sky-400 
+        hover:text-white 
+            font-bold text-xs md:text-sm dark-toggle">All Packages</NavLink>
         {
             user ?
-                <NavLink to="/myBookings" className="text-blue-400 dark-toggle border-b-3 border-transparent hover:border-blue-400 px-2 font-bold mx-3 relative">
+                <NavLink to="/myBookings" className="px-4 mx-3 rounded-xl text-blue-400
+                bg-white/10 backdrop-blur-md border border-white/20 
+                transition-all duration-300 hover:bg-gradient-to-r hover:from-blue-500 hover:to-sky-400 
+                hover:text-white 
+                    font-bold text-xs md:text-sm dark-toggle">
                     {/* if bookings available, implement condition */}
                     My Bookings
                     <div className="badge badge-sm text-white bg-blue-400 font-semibold text-xs bottom-2 w-2 rounded-full border-0 absolute">{bookings ? bookings : 0}</div>
@@ -23,7 +35,11 @@ const Navbar = ({ toggleDarkMode }) => {
                 ''
         }
 
-        <NavLink to="/about" className="text-blue-400 dark-toggle border-b-3 border-transparent hover:border-blue-400 px-2 font-bold mx-3">About Us</NavLink>
+        <NavLink to="/about" className="px-4 mx-3 rounded-xl text-blue-400
+        bg-white/10 backdrop-blur-md border border-white/20 
+        transition-all duration-300 hover:bg-gradient-to-r hover:from-blue-500 hover:to-sky-400 
+        hover:text-white 
+            font-bold text-xs md:text-sm dark-toggle">About Us</NavLink>
 
     </>
 
@@ -50,12 +66,12 @@ const Navbar = ({ toggleDarkMode }) => {
 
 
     return (
-        <div className='pt-5'>
-            <div className="navbar bg-white border-5 border-blue-400 dark-toggle m-5 w-11/12  mx-auto rounded-xl py-4 px-3 md:px-5">
+        <div className='mt-5 back py-5 dark-toggle bg-gradient-to-tr from-sky-100 via-blue-200 to-sky-300'>
+            <div className="navbar bg-white border-5 border-blue-400 dark-toggle w-11/12  mx-auto rounded-xl py-4 px-3 md:px-5">
                 <div className="navbar-start flex items-center dark-toggle">
                     <div className="dropdown dark-toggle">
                         <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden px-1  h-2">
-                            <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 dark-toggle " fill="light-blue" viewBox="0 0 24 24" stroke="lightBlue"> <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="3" d="M4 6h16M4 12h8m-8 6h16" /> </svg>
+                            <svg xmlns="http://www.w3.org/2000/svg" className="h-4 md:h-5 w-4 md:w-5 dark-toggle " fill="light-blue" viewBox="0 0 24 24" stroke="lightBlue"> <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="3" d="M4 6h16M4 12h8m-8 6h16" /> </svg>
                         </div>
                         <ul
                             tabIndex={0}
@@ -63,7 +79,7 @@ const Navbar = ({ toggleDarkMode }) => {
                             {listItems}
                         </ul>
                     </div>
-                    <a href='/' className="btn btn-ghost hover:bg-white hover:border-0 hover:shadow-xs text-blue-400 dark-toggle font-bold italic px-0 md:text-3xl text-2xl ">
+                    <Link to='/' className="btn btn-ghost hover:bg-white hover:border-0 hover:shadow-xs text-blue-400 dark-toggle font-bold italic px-0 md:text-3xl text-xl ">
                         {/* <GradientText
                         colors={["#40ffaa", "#4079ff", "#4079ff"]}
                         animationSpeed={8}
@@ -72,7 +88,7 @@ const Navbar = ({ toggleDarkMode }) => {
                     > */}
                         Chill & Travel
                         {/* </GradientText> */}
-                    </a>
+                    </Link>
                 </div>
                 <div className="navbar-center hidden lg:flex">
                     <ul className="menu menu-horizontal px-1 dark-toggle ">
@@ -105,42 +121,60 @@ const Navbar = ({ toggleDarkMode }) => {
                     </label>
                     {
                         user ?
-                            <div className="dropdown dropdown-end">
-                                <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
-                                    <div className="w-10 border-1 hover:bg-slate-100 hover:border-blue-200 rounded-full">
-                                        <img
-                                            alt="User"
-                                            src={user.photoURL || 'https://img.icons8.com/?size=100&id=42384&format=png&color=000000'} className='dark-toggle' />
-                                    </div>
+                        <div className="dropdown dropdown-end">
+                            <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
+                                <div className="w-10 border-1 hover:bg-slate-100 hover:border-blue-200 rounded-full">
+                                    <img
+                                        alt="User"
+                                        src={user.photoURL || 'https://img.icons8.com/?size=100&id=42384&format=png&color=000000'} className='dark-toggle' />
                                 </div>
-                                <ul
-                                    tabIndex={0}
-                                    className="menu menu-sm dropdown-content bg-blue-100 rounded-box z-1 mt-3 w-52 p-2 shadow text-blue-500 dark-toggle">
-                                    <Link to="/addPackage">
-                                        <li className='hover:bg-blue-200 text-lg font-semibold justify-between'>
-                                            <p className="">
-                                                Add Package
-                                            </p>
-                                        </li>
-                                    </Link>
-                                    <Link to="/myPackages">
-                                        <li className='hover:bg-blue-200 text-lg font-semibold justify-between'>
-                                            <p className="">
-                                                Manage My Packages
-                                            </p>
-                                        </li>
-                                    </Link>
-                                    <button onClick={handleLogout}>
-                                        <li className='hover:bg-blue-200 text-lg font-semibold'><a>Logout</a></li>
-                                    </button>
-                                </ul>
                             </div>
-                            :
-                            <div className='space-x-1 md:space-x-2'>
-                                <NavLink className="text-blue-400 border-b-3 border-transparent hover:border-blue-600  text-sm md:text-md p-1 font-bold dark-toggle" to="/register">SignUp</NavLink>
-                                <span className='text-blue-500  p-1 text-sm md:text-md font-bold'>/</span>
-                                <NavLink className="text-blue-400 border-b-3 border-transparent hover:border-blue-600 p-1 text-sm md:text-md font-bold dark-toggle" to="/login">LogIn</NavLink>
-                            </div>
+                            <ul
+                                tabIndex={0}
+                                className="menu menu-sm dropdown-content bg-blue-100 rounded-box z-1 mt-3 w-52 p-2 shadow text-blue-500 gap-2 dark-toggle">
+                                <NavLink to="/addPackage" className='px-4 mx-3 rounded-xl text-blue-400
+    bg-white/10 backdrop-blur-md border border-white/20 
+    transition-all duration-300 hover:bg-gradient-to-r hover:from-blue-500 hover:to-sky-400 
+    hover:text-white 
+        font-bold text-xs md:text-sm dark-toggle'>
+                                        <p className="">
+                                            Add Package
+                                        </p>
+                                </NavLink>
+                                <NavLink to="/myPackages" className='px-4 mx-3 rounded-xl text-blue-400
+    bg-white/10 backdrop-blur-md border border-white/20 
+    transition-all duration-300 hover:bg-gradient-to-r hover:from-blue-500 hover:to-sky-400 
+    hover:text-white 
+        font-bold text-xs md:text-sm dark-toggle '>
+                                        <p className="">
+                                            Manage My Packages
+                                        </p>
+                                </NavLink>
+                                <button onClick={handleLogout}>
+                                    <li className='px-4 mx-3 rounded-xl text-blue-400
+    bg-white/10 backdrop-blur-md border border-white/20 
+    transition-all duration-300 hover:bg-gradient-to-r hover:from-blue-500 hover:to-sky-400 
+    hover:text-white 
+        font-bold text-xs md:text-sm dark-toggle text-left'>
+                                        Logout
+                                    </li>
+                                </button>
+                            </ul>
+                        </div>
+                        :
+                        <div className='space-x-1 md:space-x-2'>
+                            <NavLink className="p-3 rounded-xl text-blue-400
+                            bg-white/10 backdrop-blur-md border border-white/20 
+                            transition-all duration-300 hover:bg-gradient-to-r hover:from-blue-500 hover:to-sky-400 
+                            hover:text-white 
+                                font-bold text-xs md:text-sm dark-toggle" to="/register">SignUp</NavLink>
+                            <span className='text-blue-500  p-1 text-xs md:text-sm md:text-md font-bold'>/</span>
+
+                            <NavLink className="p-3 rounded-xl text-blue-400
+                            bg-white/10 backdrop-blur-md border border-white/20 
+                            transition-all duration-300 hover:bg-gradient-to-r hover:from-blue-500 hover:to-sky-400 
+                            hover:text-white font-bold text-xs md:text-sm dark-toggle" to="/login">LogIn</NavLink>
+                        </div>
                     }
                 </div>
             </div>

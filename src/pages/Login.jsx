@@ -36,8 +36,8 @@ const Login = () => {
 
 
     return (
-        <div className="hero bg-base-200 min-h-screen dark-toggle">
-            <div className="hero-content flex-col lg:flex-row-reverse">
+        <div className="hero min-h-screen pb-10 md:py-15 dark-toggle">
+            <div className="hero-content w-[90%] flex-col lg:flex-row-reverse gap-10">
                 <div className="text-center lg:text-left">
                     <Lottie animationData={loginLottie} className='w-40 sm:w-56 md:w-72 lg:w-80 xl:w-96 max-w-full' loop={true}></Lottie>
                 </div>

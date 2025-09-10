@@ -55,7 +55,7 @@ const RootLayout = () => {
 
 
     return (
-        <div className='dark-toggle -my-5'>
+        <div className='dark-toggle back -my-5 min-h-screen bg-gradient-to-br from-sky-100 via-blue-200 to-sky-300 '>
             <Navbar isDark={isDark} toggleDarkMode={toggleDarkMode}></Navbar>
             <Outlet context={{isDark, toggleDarkMode}}></Outlet>
             <Footer context={toggleDarkMode}></Footer>

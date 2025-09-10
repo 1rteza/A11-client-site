@@ -1,16 +1,33 @@
-a.active{
- border-bottom: 3px solid #428dff;   
+a.active {
+  border-bottom: 3px solid #428dff;
+  background-image: linear-gradient(to right, #3b82f6, #38bdf8);
+  color: #fff;
+}
+a:hover {
+  background-image: linear-gradient(to right, #3b82f6, #38bdf8);
+  color: #fff;
 }
 .dark-toggle {
-  background-color: white;
-  /* color: black; */
+  background-color: #F9FAFB;
+  /* color: #1E293B; */
   transition: background-color 0.3s ease, color 0.3s ease; 
 }
 
-.dark-toggle.dark {
-  background-color: #2102d2;
+.glass {
+  background: rgba(255, 255, 255, 0.1); /* see-through */
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.dark-toggle.dark  {
+ 
+  background-color: #0F172A;
   color: #eee;
 }
+.dark-toggle.dark .back{
+ background-image: linear-gradient(to right, #0f172a, #1e3a8a);
+}
 .dark-toggle > svg-dark-toggle.dark {
-    color: white;
+  background-image: linear-gradient(to bottom right, #0f172a, #1e3a8a, #1e293b);
+    color: #F1F5F9;
 }
