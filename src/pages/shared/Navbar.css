@@ -25,7 +25,7 @@ a:hover {
   color: #eee;
 }
 .dark-toggle.dark .back{
- background-image: linear-gradient(to right, #0f172a, #1e3a8a);
+ background-image: linear-gradient(to right, #0f172a, #0f39ab);
 }
 .dark-toggle > svg-dark-toggle.dark {
   background-image: linear-gradient(to bottom right, #0f172a, #1e3a8a, #1e293b);

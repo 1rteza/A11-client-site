@@ -10,6 +10,7 @@ import Loading from "../pages/Loading";
 import PrivateRoute from "../contexts/PrivateRoute";
 import MyPackages from "../pages/MyPackages";
 import AddPackages from "../pages/AddPackages";
+import Error from "../pages/Error";
 
 const router = createBrowserRouter([
   {
@@ -57,6 +58,10 @@ const router = createBrowserRouter([
       {
         path: '/about',
         Component: About,
+      },
+      {
+        path: '/*',
+        Component: Error
       }
     ]
   },
