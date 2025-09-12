@@ -1,6 +1,7 @@
 import React from 'react';
 import { motion } from "motion/react"
 import { Link } from 'react-router';
+import ScrollToTopButton from './ScrollToTopButton';
 
 const About = () => {
     return (
@@ -21,7 +22,7 @@ const About = () => {
                     traveling as easy as chilling.
                 </p>
             </section>
-
+            <ScrollToTopButton/>
             {/* Storytelling Section */}
             <section className="text-center max-w-4xl mx-auto py-10 md:py-16 px-4">
                 <h2 className="text-2xl md:text-4xl font-bold mb-4 text-blue-600 dark:text-blue-400">

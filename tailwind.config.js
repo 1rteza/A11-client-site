@@ -7,3 +7,14 @@ module.exports = {
   },
   plugins: [],
 }
+// tailwind.config.js
+module.exports = {
+  theme: {
+    extend: {
+      screens: {
+        'xl2': '1494px',
+      },
+    },
+  },
+  plugins: [],
+}

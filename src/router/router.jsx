@@ -19,7 +19,8 @@ const router = createBrowserRouter([
     children: [
       {
         index: true,
-        // hydrateFallbackElement: <Loading></Loading>,
+        loader: () => fetch('https://chill-and-travel-server.vercel.app/tourPackages'),
+        hydrateFallbackElement: <Loading></Loading>,
         Component: Home,
       },
       {

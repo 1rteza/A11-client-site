@@ -5,8 +5,9 @@ import { Link } from 'react-router';
 
 const Banner = () => {
     return (
-        <div className="banner h-[60vh] flex flex-col justify-center items-center text-center  bg-gradient-to-br from-sky-100 via-blue-200 to-sky-300 text-blue-500 dark-toggle">
+        <div className="banner h-[80vh] flex flex-col justify-center items-center text-center  bg-gradient-to-br from-sky-100 via-blue-200 to-sky-300 text-blue-500 dark-toggle">
 
+            
 
             <motion.h1
                 initial={{ opacity: 0, y: -50 }}

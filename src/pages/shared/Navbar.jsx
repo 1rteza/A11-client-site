@@ -4,8 +4,9 @@ import { Link, NavLink } from 'react-router';
 import Swal from 'sweetalert2';
 import { AuthContext } from '../../contexts/AuthContext/AuthContext';
 import './Navbar.css'
+import { motion } from "motion/react"
 
-const Navbar = ({ toggleDarkMode }) => {
+const Navbar = ({ toggleDarkMode, isDark }) => {
     const { user, signOutUser } = use(AuthContext);
     const bookings = '';
 
@@ -96,7 +97,7 @@ const Navbar = ({ toggleDarkMode }) => {
                     </ul>
                 </div>
                 <div className="navbar-end">
-                    <label className="swap swap-rotate mr-1 md:mr-3">
+                    <label className="swap swap-rotate mr-1 md:mr-3 z-10">
                         {/* this hidden checkbox controls the state */}
                         <input type="checkbox" onClick={toggleDarkMode} />
 
@@ -121,18 +122,18 @@ const Navbar = ({ toggleDarkMode }) => {
                     </label>
                     {
                         user ?
-                        <div className="dropdown dropdown-end">
-                            <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
-                                <div className="w-10 border-1 hover:bg-slate-100 hover:border-blue-200 rounded-full">
-                                    <img
-                                        alt="User"
-                                        src={user.photoURL || 'https://img.icons8.com/?size=100&id=42384&format=png&color=000000'} className='dark-toggle' />
+                            <div className="dropdown dropdown-end">
+                                <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
+                                    <div className="w-10 border-1 hover:bg-slate-100 hover:border-blue-200 rounded-full">
+                                        <img
+                                            alt="User"
+                                            src={user.photoURL || 'https://img.icons8.com/?size=100&id=42384&format=png&color=000000'} className='dark-toggle' />
+                                    </div>
                                 </div>
-                            </div>
-                            <ul
-                                tabIndex={0}
-                                className="menu menu-sm dropdown-content bg-blue-100 rounded-box z-1 mt-3 w-52 p-2 shadow text-blue-500 gap-2 dark-toggle">
-                                <NavLink to="/addPackage" className='px-4 mx-3 rounded-xl text-blue-400
+                                <ul
+                                    tabIndex={0}
+                                    className="menu menu-sm dropdown-content bg-blue-100 rounded-box z-1 mt-3 w-52 p-2 shadow text-blue-500 gap-2 dark-toggle">
+                                    <NavLink to="/addPackage" className='px-4 mx-3 rounded-xl text-blue-400
     bg-white/10 backdrop-blur-md border border-white/20 
     transition-all duration-300 hover:bg-gradient-to-r hover:from-blue-500 hover:to-sky-400 
     hover:text-white 
@@ -140,8 +141,8 @@ const Navbar = ({ toggleDarkMode }) => {
                                         <p className="">
                                             Add Package
                                         </p>
-                                </NavLink>
-                                <NavLink to="/myPackages" className='px-4 mx-3 rounded-xl text-blue-400
+                                    </NavLink>
+                                    <NavLink to="/myPackages" className='px-4 mx-3 rounded-xl text-blue-400
     bg-white/10 backdrop-blur-md border border-white/20 
     transition-all duration-300 hover:bg-gradient-to-r hover:from-blue-500 hover:to-sky-400 
     hover:text-white 
@@ -149,35 +150,81 @@ const Navbar = ({ toggleDarkMode }) => {
                                         <p className="">
                                             Manage My Packages
                                         </p>
-                                </NavLink>
-                                <button onClick={handleLogout}>
-                                    <li className='px-4 mx-3 rounded-xl text-blue-400
+                                    </NavLink>
+                                    <button onClick={handleLogout}>
+                                        <li className='px-4 mx-3 rounded-xl text-blue-400
     bg-white/10 backdrop-blur-md border border-white/20 
     transition-all duration-300 hover:bg-gradient-to-r hover:from-blue-500 hover:to-sky-400 
     hover:text-white 
         font-bold text-xs md:text-sm dark-toggle text-left'>
-                                        Logout
-                                    </li>
-                                </button>
-                            </ul>
-                        </div>
-                        :
-                        <div className='space-x-1 md:space-x-2'>
-                            <NavLink className="p-3 rounded-xl text-blue-400
+                                            Logout
+                                        </li>
+                                    </button>
+                                </ul>
+                            </div>
+                            :
+                            <div className='space-x-1 md:space-x-2'>
+                                <NavLink className="p-3 rounded-xl text-blue-400
                             bg-white/10 backdrop-blur-md border border-white/20 
                             transition-all duration-300 hover:bg-gradient-to-r hover:from-blue-500 hover:to-sky-400 
                             hover:text-white 
                                 font-bold text-xs md:text-sm dark-toggle" to="/register">SignUp</NavLink>
-                            <span className='text-blue-500  p-1 text-xs md:text-sm md:text-md font-bold'>/</span>
+                                <span className='text-blue-500  p-1 text-xs md:text-sm md:text-md font-bold'>/</span>
 
-                            <NavLink className="p-3 rounded-xl text-blue-400
+                                <NavLink className="p-3 rounded-xl text-blue-400
                             bg-white/10 backdrop-blur-md border border-white/20 
                             transition-all duration-300 hover:bg-gradient-to-r hover:from-blue-500 hover:to-sky-400 
                             hover:text-white font-bold text-xs md:text-sm dark-toggle" to="/login">LogIn</NavLink>
-                        </div>
+                            </div>
                     }
                 </div>
             </div>
+
+            {
+                user ?
+                    <>
+                        {
+                            isDark ?
+                                '' :
+                                <div
+                                    className='absolute '>
+                                    <div className=' relative left-55 bottom-9 md:left-145 lg:bottom-8 lg:left-205 xl:left-315'>
+
+                                        <motion.img 
+                                        src="https://img.icons8.com/?size=100&id=ClCGsFRdf5gA&format=png&color=000000"
+                                        animate={{ y: [0, -10, 0] }}
+                                        transition={{ repeat: Infinity, duration: 2, ease: "easeInOut" }} 
+                                        className='w-15 md:w-18 lg:w-20 rotate-70' alt="" />
+                                        <h2 className='text-[8px] md:text-[10px] lg:text-xs relative right-10 text-blue-500 font-semibold'>Try Dark Mode for better experience</h2>
+
+                                    </div>
+                                </div>
+                        }
+                    </>
+
+                    :
+                    <>
+                        {
+                            isDark ?
+                                '' :
+                                <div
+                                    className='absolute '>
+                                    <div className=' relative left-40 bottom-7 md:left-122 md:bottom-6 lg:left-180 xl:bottom-7 xl:left-290 '>
+
+                                        <motion.img 
+                                        src="https://img.icons8.com/?size=100&id=ClCGsFRdf5gA&format=png&color=000000" 
+                                        animate={{ y: [0, -10, 0] }}
+                                        transition={{ repeat: Infinity, duration: 2, ease: "easeInOut" }}
+                                        className='w-15 md:18 lg:w-20 -rotate-40 scale-x-[-1]' alt="" />
+                                        <h2 className='text-[8px] lg:text-xs relative right-10 text-blue-500 font-semibold'>Try Dark Mode for better experience</h2>
+
+                                    </div>
+                                </div>
+                        }
+                    </>
+            }
+
+
         </div>
     );
 

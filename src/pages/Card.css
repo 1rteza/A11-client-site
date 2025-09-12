@@ -1,0 +1,8 @@
+.dark-toggle.dark .dark-card {
+ background: linear-gradient(to bottom , #4488fd, #0c46ba, #0903a5);
+
+}
+.dark-toggle.dark-card {
+background: linear-gradient(to bottom , #e0f2fe, #bfdbfe, #7dd3fc);
+
+}
