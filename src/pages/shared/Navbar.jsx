@@ -69,8 +69,8 @@ const Navbar = ({ toggleDarkMode, isDark }) => {
     return (
         <div className='mt-5 back py-5 dark-toggle bg-gradient-to-tr from-sky-100 via-blue-200 to-sky-300'>
             <div className="navbar bg-white border-5 border-blue-400 dark-toggle w-11/12  mx-auto rounded-xl py-4 px-3 md:px-5">
-                <div className="navbar-start flex items-center dark-toggle">
-                    <div className="dropdown dark-toggle">
+                <div className="navbar-start flex items-center dark-toggle z-5">
+                    {/* <div className="dropdown dark-toggle">
                         <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden px-1  h-2">
                             <svg xmlns="http://www.w3.org/2000/svg" className="h-4 md:h-5 w-4 md:w-5 dark-toggle " fill="light-blue" viewBox="0 0 24 24" stroke="lightBlue"> <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="3" d="M4 6h16M4 12h8m-8 6h16" /> </svg>
                         </div>
@@ -79,7 +79,7 @@ const Navbar = ({ toggleDarkMode, isDark }) => {
                             className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow dark-toggle">
                             {listItems}
                         </ul>
-                    </div>
+                    </div> */}
                     <Link to='/' className="btn btn-ghost hover:bg-white hover:border-0 hover:shadow-xs text-blue-400 dark-toggle font-bold italic px-0 md:text-3xl text-xl ">
                         {/* <GradientText
                         colors={["#40ffaa", "#4079ff", "#4079ff"]}
@@ -97,6 +97,43 @@ const Navbar = ({ toggleDarkMode, isDark }) => {
                     </ul>
                 </div>
                 <div className="navbar-end">
+                    {
+                        isDark ?
+                            <></>
+                            :
+                            <>
+                                {
+                                    user ?
+                                        <div
+                                            className='absolute '>
+                                            <div className=' relative top-12 right-1'>
+
+                                                <motion.img
+                                                    src="https://img.icons8.com/?size=100&id=ClCGsFRdf5gA&format=png&color=000000"
+                                                    animate={{ y: [0, -10, 0] }}
+                                                    transition={{ repeat: Infinity, duration: 2, ease: "easeInOut" }}
+                                                    className='w-14 relative left-14 lg:w-20 rotate-70' alt="" />
+                                                <h2 className='text-[10px] lg:text-xs relative text-blue-500 font-semibold'>Try Dark Mode for better experience</h2>
+
+                                            </div>
+                                        </div>
+                                        :
+                                        <div
+                                            className='absolute '>
+                                            <div className=' relative top-14 right-28 md:right-35 md:top-12 lg:top-14 lg:right-28'>
+
+                                                <motion.img
+                                                    src="https://img.icons8.com/?size=100&id=ClCGsFRdf5gA&format=png&color=000000"
+                                                    animate={{ y: [0, -10, 0] }}
+                                                    transition={{ repeat: Infinity, duration: 2, ease: "easeInOut" }}
+                                                    className='w-16 relative left-14 lg:w-20 rotate-70' alt="" />
+                                                <h2 className='text-[10px] lg:text-xs relative text-blue-500 font-semibold'>Try Dark Mode for better experience</h2>
+
+                                            </div>
+                                        </div>
+                                }
+                            </>
+                    }
                     <label className="swap swap-rotate mr-1 md:mr-3 z-10">
                         {/* this hidden checkbox controls the state */}
                         <input type="checkbox" onClick={toggleDarkMode} />
@@ -118,6 +155,8 @@ const Navbar = ({ toggleDarkMode, isDark }) => {
                             <path
                                 d="M21.64,13a1,1,0,0,0-1.05-.14,8.05,8.05,0,0,1-3.37.73A8.15,8.15,0,0,1,9.08,5.49a8.59,8.59,0,0,1,.25-2A1,1,0,0,0,8,2.36,10.14,10.14,0,1,0,22,14.05,1,1,0,0,0,21.64,13Zm-9.5,6.69A8.14,8.14,0,0,1,7.08,5.22v.27A10.15,10.15,0,0,0,17.22,15.63a9.79,9.79,0,0,0,2.1-.22A8.11,8.11,0,0,1,12.14,19.73Z" />
                         </svg>
+
+
 
                     </label>
                     {
@@ -178,54 +217,10 @@ const Navbar = ({ toggleDarkMode, isDark }) => {
                             </div>
                     }
                 </div>
-            </div>
-
-            {
-                user ?
-                    <>
-                        {
-                            isDark ?
-                                '' :
-                                <div
-                                    className='absolute '>
-                                    <div className=' relative left-55 bottom-9 md:left-145 lg:bottom-8 lg:left-205 xl:left-315'>
-
-                                        <motion.img 
-                                        src="https://img.icons8.com/?size=100&id=ClCGsFRdf5gA&format=png&color=000000"
-                                        animate={{ y: [0, -10, 0] }}
-                                        transition={{ repeat: Infinity, duration: 2, ease: "easeInOut" }} 
-                                        className='w-15 md:w-18 lg:w-20 rotate-70' alt="" />
-                                        <h2 className='text-[8px] md:text-[10px] lg:text-xs relative right-10 text-blue-500 font-semibold'>Try Dark Mode for better experience</h2>
-
-                                    </div>
-                                </div>
-                        }
-                    </>
-
-                    :
-                    <>
-                        {
-                            isDark ?
-                                '' :
-                                <div
-                                    className='absolute '>
-                                    <div className=' relative left-40 bottom-7 md:left-122 md:bottom-6 lg:left-180 xl:bottom-7 xl:left-290 '>
-
-                                        <motion.img 
-                                        src="https://img.icons8.com/?size=100&id=ClCGsFRdf5gA&format=png&color=000000" 
-                                        animate={{ y: [0, -10, 0] }}
-                                        transition={{ repeat: Infinity, duration: 2, ease: "easeInOut" }}
-                                        className='w-15 md:18 lg:w-20 -rotate-40 scale-x-[-1]' alt="" />
-                                        <h2 className='text-[8px] lg:text-xs relative right-10 text-blue-500 font-semibold'>Try Dark Mode for better experience</h2>
-
-                                    </div>
-                                </div>
-                        }
-                    </>
-            }
+            </div >
 
 
-        </div>
+        </div >
     );
 
 };

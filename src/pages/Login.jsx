@@ -3,6 +3,7 @@ import loginLottie from '../assets/lotties/login.json'
 import Lottie from 'lottie-react';
 import { AuthContext } from '../contexts/AuthContext/AuthContext';
 import './Register.css'
+import Menu from './Menu';
 
 
 const Login = () => {
@@ -64,6 +65,7 @@ const Login = () => {
                     </div>
                 </div>
             </div>
+            <Menu></Menu>
         </div>
     );
 };

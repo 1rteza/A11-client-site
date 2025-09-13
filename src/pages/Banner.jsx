@@ -1,13 +1,19 @@
-import React from 'react';
+import React, { use } from 'react';
 import { motion } from "motion/react"
 import './Banner.css'
-import { Link } from 'react-router';
+import { Link, NavLink } from 'react-router';
+import { AuthContext } from '../contexts/AuthContext/AuthContext';
+import Menu from './Menu';
 
 const Banner = () => {
+
+    
+
+
     return (
         <div className="banner h-[80vh] flex flex-col justify-center items-center text-center  bg-gradient-to-br from-sky-100 via-blue-200 to-sky-300 text-blue-500 dark-toggle">
 
-            
+
 
             <motion.h1
                 initial={{ opacity: 0, y: -50 }}
@@ -33,8 +39,7 @@ const Banner = () => {
                     Start Your Journey
                 </Link>
             </motion.div>
-
-
+            <Menu></Menu>
         </div>
     );
 };

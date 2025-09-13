@@ -2,6 +2,7 @@ import React from 'react';
 import { motion } from "motion/react"
 import { Link } from 'react-router';
 import ScrollToTopButton from './ScrollToTopButton';
+import Menu from './Menu';
 
 const About = () => {
     return (
@@ -110,17 +111,18 @@ const About = () => {
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
                     transition={{ duration: 0.3, delay: 0.1 }}
-                >
+                    >
                     <Link
                         to="/allPackages"
                         className="mt-6 inline-block px-6 py-3 rounded-xl font-semibold bg-gradient-to-r from-blue-500 to-sky-400 hover:from-blue-600 hover:to-sky-500 text-white shadow-lg"
-                    >
+                        >
                         Start Your Journey
                     </Link>
                 </motion.div>
 
 
             </section>
+            <div><Menu></Menu></div>
         </div>
 
     );

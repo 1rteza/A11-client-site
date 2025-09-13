@@ -3,6 +3,7 @@ import React, { use } from 'react';
 import regLottie from '../assets/lotties/register.json'
 import { AuthContext } from '../contexts/AuthContext/AuthContext';
 import './Register.css'
+import Menu from './Menu';
 
 const Register = () => {
 
@@ -63,6 +64,7 @@ const Register = () => {
                     </div>
                 </div>
             </div>
+            <Menu></Menu>
         </div>
     );
 };

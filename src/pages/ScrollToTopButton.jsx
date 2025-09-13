@@ -32,7 +32,7 @@ const ScrollToTopButton = () => {
                 animate={{ y: [0, 15, 0] }}
                 transition={{ repeat: Infinity, duration: 1, ease: "easeInOut" }}
                 onClick={scrollToTop}
-                className="fixed bottom-15 right-12 p-2 rounded-full bg-blue-500 text-white shadow-lg hover:bg-blue-600 transition-transform hover:scale-110 z-50"
+                className="fixed bottom-25 right-5 p-2 rounded-full bg-blue-500 text-white shadow-lg hover:bg-blue-600 transition-transform hover:scale-110 z-50"
                 aria-label="Scroll to top"
             >
                 <img
