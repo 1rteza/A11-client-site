@@ -1,42 +1,61 @@
-import React, { use } from 'react';
+import React, { use, useState } from 'react';
 import loginLottie from '../assets/lotties/login.json'
 import Lottie from 'lottie-react';
 import { AuthContext } from '../contexts/AuthContext/AuthContext';
 import './Register.css'
 import Menu from './Menu';
+import { useLocation, useNavigate } from 'react-router';
+import Swal from 'sweetalert2';
+import { FaEye, FaEyeSlash } from 'react-icons/fa';
 
 
 const Login = () => {
 
+    const [show, setShow] = useState(false);
+    const [error, setError] = useState("");
 
-      const {signInUser,signInWithGoogle} = use(AuthContext)
-    
-    
-        const handleLogin = e => {
-            e.preventDefault();
-            const form = e.target;
-            const email = form.email.value;
-            const password = form.password.value;
-            console.log(email, password);
-    
-            signInUser(email, password)
-            .then(res => {
-                console.log(res.user);
+    const { signInUser, setUser, signInWithGoogle } = use(AuthContext);
+    const location = useLocation().state;
+    const navigate = useNavigate()
+
+
+    const handleLogin = e => {
+        e.preventDefault();
+        const form = e.target;
+        const email = form.email.value;
+        const password = form.password.value;
+        console.log(email, password);
+
+        signInUser(email, password)
+            .then(result => {
+                const user = result.user;
+                setUser(user)
+                navigate(`${location ? location : '/'}`);
+                console.log(result.user);
+            })
+            .catch(e => {
+                const errorCode = e.code;
+                Swal.fire({
+                    icon: "error",
+                    title: "Oops...",
+                    // text: "Something went wrong!",
+                    text: errorCode,
+                });
+                setError(errorCode);
+            })
+    }
+
+    const handleGoogleLogin = () => {
+        signInWithGoogle()
+            .then(result => {
+                const user = result.user;
+                setUser(user)
+                navigate(`${location ? location : '/'}`);
             })
             .catch(e => {
                 console.log(e);
             })
-        }
-
-        const handleGoogleLogin = () => {
-            signInWithGoogle()
-            .then(res => {
-                console.log(res);
-            })
-            .catch(e => {
-                console.log(e);
-            })
-        }
+    }
 
 
     return (
@@ -53,7 +72,17 @@ const Login = () => {
                                 <label className="label">Email</label>
                                 <input type="email" name='email' className="input bg-blue-500 text-white" placeholder="Email" />
                                 <label className="label">Password</label>
-                                <input type="password" name='password' className="input bg-blue-500 text-white" placeholder="Password" />
+                                <div className='relative'>
+                                    <input type={show ? 'text' : 'password'} name='password' className="input bg-blue-500 text-white" placeholder="Enter Password" required />
+                                    <button onClick={() => { setShow(!show) }} className='z-1000 absolute btn btn-xs border-0 top-2 right-4 md:right-7 bg-blue-100' type='button'>
+                                        {
+                                            show ? <FaEyeSlash className='text-blue-500' /> : <FaEye className='text-blue-500' />
+                                        }
+                                    </button>
+                                </div>
+                                {
+                                    error && <p className='mt-3 text-xs text-red-500'>{error}</p>
+                                }
                                 <button className="mt-6 btn btn-lg border-0 px-6 py-3 rounded-lg font-semibold bg-gradient-to-r from-blue-500 to-sky-400 hover:from-blue-600 hover:to-sky-500 text-white shadow-lg text-xs md:text-sm dark-toggle">Login</button>
                                 <div className="divider text-blue-500">OR</div>
                                 <button onClick={handleGoogleLogin} className="btn btn-lg text-xs md:text-sm rounded-lg bg-white text-black border-[#e5e5e5] hover:border-0 hover:text-white hover:bg-gradient-to-r hover:from-blue-500 hover:to-sky-400">

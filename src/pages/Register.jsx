@@ -1,13 +1,23 @@
 import Lottie from 'lottie-react';
-import React, { use } from 'react';
+import React, { use, useState } from 'react';
 import regLottie from '../assets/lotties/register.json'
 import { AuthContext } from '../contexts/AuthContext/AuthContext';
-import './Register.css'
+import './Register.css';
+import { FaEye, FaEyeSlash } from 'react-icons/fa';
 import Menu from './Menu';
+import { useNavigate } from 'react-router';
+import Swal from 'sweetalert2';
 
 const Register = () => {
 
-    const {createUser,signInWithGoogle} = use(AuthContext)
+    const [show, setShow] = useState(false);
+    const [nameError, setNameError] = useState('');
+    const [passError, setPassError] = useState('');
+
+    const [success, setSuccess] = useState(false);
+
+    const { createUser, signInWithGoogle, setUser } = use(AuthContext)
+    const navigate = useNavigate();
 
 
     const handleRegister = e => {
@@ -15,27 +25,62 @@ const Register = () => {
         const form = e.target;
         const email = form.email.value;
         const password = form.password.value;
+        const name = form.name.value;
+        const photo = form.photo.value;
         console.log(email, password);
 
+
+        if (name.length < 6) {
+            setNameError('Name should be more than 6 characters')
+            return;
+        }
+        else {
+            setNameError('')
+        }
+        setSuccess(false)
+        const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z]).{6,}$/;
+        if (!passwordRegex.test(password)) {
+            setPassError(
+                "Password must be at least 6 characters long and include both uppercase and lowercase letters."
+            );
+            return;
+        }
+
+
         createUser(email, password)
-        .then(res => {
-            console.log(res.user);
-        })
-        .catch(e => {
-            console.log(e);
-        })
-    }
+            .then(result => {
+                const user = result.user;
 
+                setUser(user);
+                setSuccess(true);
+                navigate('/');
 
-     const handleGoogleLogin = () => {
-            signInWithGoogle()
-            .then(res => {
-                console.log(res);
+                Swal.fire({
+                    position: "top-end",
+                    icon: "success",
+                    title: "Your account has been created",
+                    showConfirmButton: false,
+                    timer: 1500
+                });
+
             })
             .catch(e => {
                 console.log(e);
             })
-        }
+    }
+
+
+    const handleGoogleLogin = () => {
+        signInWithGoogle()
+            .then(result => {
+                const user = result.user;
+                setUser(user)
+                navigate(`/`);
+            })
+            .catch(e => {
+                console.log(e);
+            })
+    }
 
 
     return (
@@ -49,10 +94,27 @@ const Register = () => {
                         <form onSubmit={handleRegister}>
                             <fieldset className="fieldset">
                                 <h1 className="text-4xl md:text-5xl font-bold">Register now!</h1>
+                                <label className="label">Name</label>
+                                <input type="text" name='name' className="input text-white bg-blue-500" placeholder="Enter Name" />
+                                <div>
+                                    {nameError && <p className='mt-3 text-red-400 text-xs'>{nameError}</p>}
+                                </div>
                                 <label className="label">Email</label>
                                 <input type="email" name='email' className="input bg-blue-500 text-white" placeholder="Email" />
+                                <label className="label">Photo URL</label>
+                                <input type="text" name='photo' className="input text-white bg-blue-500" placeholder="Enter Photo URL" />
                                 <label className="label">Password</label>
-                                <input type="password" name='password' className="input bg-blue-500 text-white" placeholder="Password" />
+                                <div className='relative'>
+                                    <input type={show ? 'text' : 'password'} name='password' className="input bg-blue-500 text-white" placeholder="Enter Password" required />
+                                    {
+                                        passError && <p className='mt-3 text-xs text-red-500'>{passError}</p>
+                                    }
+                                    <button onClick={() => { setShow(!show) }} className='z-1000 absolute btn btn-xs border-0 top-2 right-4 md:right-7 bg-blue-100' type='button'>
+                                        {
+                                            show ? <FaEyeSlash className='text-blue-500' /> : <FaEye className='text-blue-500' />
+                                        }
+                                    </button>
+                                </div>
                                 <button className="mt-6 btn btn-lg border-0 px-6 py-3 rounded-lg font-semibold bg-gradient-to-r from-blue-500 to-sky-400 hover:from-blue-600 hover:to-sky-500 text-white shadow-lg text-xs md:text-sm dark-toggle">Create Account</button>
                                 <div className="divider text-blue-500">OR</div>
                                 <button onClick={handleGoogleLogin} className="btn btn-lg text-xs md:text-sm rounded-lg bg-white text-black border-[#e5e5e5] hover:border-0 hover:text-white hover:bg-gradient-to-r hover:from-blue-500 hover:to-sky-400">
@@ -61,6 +123,9 @@ const Register = () => {
                                 </button>
                             </fieldset>
                         </form>
+                        {
+                            success && <p className='text-xs text-green-400'>User has been created successfully</p>
+                        }
                     </div>
                 </div>
             </div>

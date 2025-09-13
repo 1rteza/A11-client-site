@@ -11,6 +11,7 @@ import PrivateRoute from "../contexts/PrivateRoute";
 import MyPackages from "../pages/MyPackages";
 import AddPackages from "../pages/AddPackages";
 import Error from "../pages/Error";
+import PackageDetails from "../pages/PackageDetails";
 
 const router = createBrowserRouter([
   {
@@ -33,6 +34,8 @@ const router = createBrowserRouter([
       },
       {
         path: '/allPackages',
+        loader: () => fetch('https://chill-and-travel-server.vercel.app/tourPackages'),
+        hydrateFallbackElement: <Loading></Loading>,
         Component: Packages,
       },
       {
@@ -59,6 +62,13 @@ const router = createBrowserRouter([
       {
         path: '/about',
         Component: About,
+      },
+      {
+        path: '/packages/:id',
+        element:
+          <PrivateRoute>
+            <PackageDetails></PackageDetails>
+          </PrivateRoute>
       },
       {
         path: '/*',

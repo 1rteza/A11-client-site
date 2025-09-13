@@ -7,7 +7,7 @@ const FeaPack = ({ feaPack }) => {
 
     console.log(feaPack);
 
-    const { image, tour_name, guide_name, guide_photo, duration, departure_date, price } = feaPack;
+    const { _id,image, tour_name, guide_name, guide_photo, duration, departure_date, price } = feaPack;
 
     console.log(image);
 
@@ -49,7 +49,7 @@ const FeaPack = ({ feaPack }) => {
                         transition={{ duration: 0.3, delay: 0.1 }}
                     >
                         <Link
-                            to="/"
+                            to={`/packages/${_id}`}
                             className="mt-6 inline-block px-6 py-3 rounded-xl font-semibold 
                             bg-gradient-to-r from-emerald-400 to-teal-300 hover:from-emerald-500 hover:to-teal-400 text-white shadow-lg"
                         >
