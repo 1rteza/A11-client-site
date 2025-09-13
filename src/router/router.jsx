@@ -64,7 +64,9 @@ const router = createBrowserRouter([
         Component: About,
       },
       {
-        path: '/packages/:id',
+        path: '/package/:id',
+        loader: ({params}) => fetch(`https://chill-and-travel-server.vercel.app/tourPackages/${params.id}`),
+        hydrateFallbackElement: <Loading></Loading>,
         element:
           <PrivateRoute>
             <PackageDetails></PackageDetails>

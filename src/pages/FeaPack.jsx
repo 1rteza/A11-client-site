@@ -49,7 +49,7 @@ const FeaPack = ({ feaPack }) => {
                         transition={{ duration: 0.3, delay: 0.1 }}
                     >
                         <Link
-                            to={`/packages/${_id}`}
+                            to={`/package/${_id}`}
                             className="mt-6 inline-block px-6 py-3 rounded-xl font-semibold 
                             bg-gradient-to-r from-emerald-400 to-teal-300 hover:from-emerald-500 hover:to-teal-400 text-white shadow-lg"
                         >

@@ -6,11 +6,15 @@ import errorSearch from '../assets/lotties/errrorSearch.json'
 import oops from '../assets/lotties/oops.json'
 import Lottie from 'lottie-react';
 import { motion } from "motion/react"
+import Menu from './Menu';
+import ScrollToTopButton from './ScrollToTopButton';
 
 const Error = () => {
     return (
         <div className='bg-gradient-to-br from-sky-100 via-blue-200 to-sky-300 text-blue-500 dark-toggle back md:py-10'>
             <div className='pt-1 p-5 mx-auto items-center flex flex-col gap-5'>
+                <ScrollToTopButton />
+                <Menu></Menu>
                 <div className=' mx-auto w-50 md:w-90'>
                     <Lottie animationData={errorSearch} className='w-50 md:w-72 lg:w-90 max-w-full' loop={true}></Lottie>
                     <Lottie animationData={oops} className='w-50 md:w-76 max-w-full -mt-10' loop={true}></Lottie>
