@@ -1,5 +1,5 @@
 // import React, { use } from 'react';
-import { use } from 'react';
+import { use, useState } from 'react';
 import { Link, NavLink } from 'react-router';
 import Swal from 'sweetalert2';
 import { AuthContext } from '../../contexts/AuthContext/AuthContext';
@@ -8,7 +8,8 @@ import { motion } from "motion/react"
 
 const Navbar = ({ toggleDarkMode, isDark }) => {
     const { user, signOutUser } = use(AuthContext);
-    const bookings = '';
+    const [bookings, setBookings] = useState([]);
+
 
     const listItems = <>
         <NavLink to="/" className="px-4 mx-3 rounded-xl text-blue-400

@@ -1,0 +1,51 @@
+/* Table container */
+.tableContainer {
+  background: rgba(60, 174, 250, 0.8); 
+  backdrop-filter: blur(12px);
+  border: 2px solid white;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+/* Header row */
+.tableHeader {
+  background: linear-gradient(to right, #0284c7, #0369a1);
+  color: white;
+}
+
+/* Table rows */
+.tableRow {
+  background: linear-gradient(to bottom , #e0f7fa, #81d4fa);
+  transition: background 0.3s ease, color 0.3s ease;
+}
+
+.tableRow:nth-child(even) {
+  background: linear-gradient(to bottom , #dbeafe, #93c5fd);
+}
+
+/* Hover effect */
+.tableRow:hover {
+  background: linear-gradient(to right, #38bdf8, #0ea5e9);
+  color: white;
+}
+
+/* Dark mode */
+.dark-toggle .tableContainer {
+  background: #1052eb; /* slate-900 */
+  border: 2px solid white;
+}
+
+.dark-toggle.dark .tableHeader {
+  background: #025ff5;
+}
+
+.dark-toggle.dark .tableRow {
+  background: #09419b;
+  color: #e2e8f0;
+}
+
+.dark-toggle.dark .tableRow:hover {
+  background: #85abdf;
+  color: #fff;
+}
