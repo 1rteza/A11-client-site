@@ -11,7 +11,7 @@ const Home = () => {
             <Banner></Banner>
             <ScrollToTopButton/>
             <FeaturedPackages></FeaturedPackages>
-            {/* <About></About> */}
+            <About></About>
         </div>
 
     );
