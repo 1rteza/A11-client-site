@@ -40,10 +40,12 @@ const router = createBrowserRouter([
       },
       {
         path: '/myBookings',
-        element:
+        element: (
           <PrivateRoute>
             <MyBookings></MyBookings>
           </PrivateRoute>
+        ),
+        
       },
       {
         path: '/myPackages',
@@ -65,7 +67,7 @@ const router = createBrowserRouter([
       },
       {
         path: '/package/:id',
-        loader: ({params}) => fetch(`https://chill-and-travel-server.vercel.app/tourPackages/${params.id}`),
+        loader: ({ params }) => fetch(`https://chill-and-travel-server.vercel.app/tourPackages/${params.id}`),
         hydrateFallbackElement: <Loading></Loading>,
         element:
           <PrivateRoute>

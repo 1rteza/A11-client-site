@@ -2,6 +2,7 @@ import React from 'react';
 import Banner from './Banner';
 import FeaturedPackages from './FeaturedPackages';
 import ScrollToTopButton from './ScrollToTopButton';
+import About from './About';
 
 const Home = () => {
     return (
@@ -10,7 +11,7 @@ const Home = () => {
             <Banner></Banner>
             <ScrollToTopButton/>
             <FeaturedPackages></FeaturedPackages>
-            <div className='min-h-screen dark-toggle banner bg-gradient-to-br from-sky-100 via-blue-200 to-sky-300'></div>
+            <About></About>
         </div>
 
     );

@@ -4,16 +4,15 @@ import { AuthContext } from '../contexts/AuthContext/AuthContext';
 import ScrollToTopButton from './ScrollToTopButton';
 import './MyBookings.css'
 import Swal from 'sweetalert2';
+import { useLoaderData, useOutletContext } from 'react-router';
 
-// const myBookingsPromise = email => {
-//     return fetch(`https://chill-and-travel-server.vercel.app/bookings?email=${email}`)
-// }
 
 const MyBookings = () => {
 
 
     const { user } = use(AuthContext);
     const [bookings, setBookings] = useState([]);
+    const {fetchBookings} = useOutletContext();
 
 
     useEffect(() => {
@@ -45,6 +44,7 @@ const MyBookings = () => {
                     showConfirmButton: false,
                     timer: 1500
                 });
+                fetchBookings();
             } else {
                 Swal.fire({
                     icon: "error",
@@ -65,7 +65,7 @@ const MyBookings = () => {
 
 
     return (
-        <div className='bg-gradient-to-br from-sky-100 via-blue-200 to-sky-300 text-blue-500 dark-toggle back'>
+        <div className='min-h-screen bg-gradient-to-br from-sky-100 via-blue-200 to-sky-300 text-blue-500 dark-toggle back'>
             <ScrollToTopButton />
             <Menu></Menu>
             <div className='p-5 md:p-10'>

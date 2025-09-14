@@ -7,20 +7,25 @@ import { AuthContext } from '../contexts/AuthContext/AuthContext';
 const RootLayout = () => {
 
 
-     const { user } = use(AuthContext);
+    const { user } = use(AuthContext);
+    const [bookings, setBookings] = useState([]);
 
-    // useEffect(() => {
-    //     if (!user) return;
-    //     const url = `https://plantea-server-1rteza-1rtezas-projects.vercel.app/plants`;
-    //     fetch(url)
-    //         .then(res => res.json())
-    //         .then(plants => {
-    //             const myList = plants.filter(p => p.userEmail === user.email);
-    //             setPlants(myList);
-    //         })
-    //         .catch(console.error);
-    // }, [user]);
+    const fetchBookings = async () => {
+        if (!user) return;
+        try {
+            const res = await fetch(
+                `https://chill-and-travel-server.vercel.app/bookings?email=${user.email}`
+            );
+            const data = await res.json();
+            setBookings(data.length);
+        } catch (error) {
+            console.error(error);
+        }
+    };
 
+    useEffect(() => {
+        fetchBookings();
+    });
 
 
     const [isDark, setIsDark] = useState(false);
@@ -56,8 +61,8 @@ const RootLayout = () => {
 
     return (
         <div className='dark-toggle back -my-5 min-h-screen bg-gradient-to-br from-sky-100 via-blue-200 to-sky-300 '>
-            <Navbar isDark={isDark} toggleDarkMode={toggleDarkMode}></Navbar>
-            <Outlet context={{isDark, toggleDarkMode}}></Outlet>
+            <Navbar bookings={bookings} refreshBookings={fetchBookings} isDark={isDark} toggleDarkMode={toggleDarkMode}></Navbar>
+            <Outlet context={{ fetchBookings,isDark, toggleDarkMode, bookings }}></Outlet>
             <Footer context={toggleDarkMode}></Footer>
         </div>
     );

@@ -56,23 +56,6 @@ const PackageDetails = () => {
             })
             .catch(err => console.error(err));
 
-        // try {
-        //     const res = await fetch("http://localhost:3000/bookings", {
-        //         method: "POST",
-        //         headers: { "Content-Type": "application/json" },
-        //         body: JSON.stringify(newBooking),
-        //     });
-
-        //     if (res.ok) {
-        //         alert("Booking successful! Status: pending");
-        //         setShowModal(false);
-        //     } else {
-        //         alert("Failed to book the tour.");
-        //     }
-        // } catch (error) {
-        //     console.error(error);
-        //     alert("Error while booking!");
-        // }
     };
 
     return (

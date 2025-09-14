@@ -1,0 +1,14 @@
+.dark-toggle.back2 {
+  background: linear-gradient(to top left, #e0f7fa, #a2c8e9, #81d4fa);
+  border: 3px solid rgb(62, 160, 252);
+  color: #025ff5;
+}
+.dark .banner2 {
+  background-image: linear-gradient(to bottom right, #0f172a, #123bab, #1e293b);
+  color: #fff;
+}
+.dark-toggle.dark .back2{
+ background-image: linear-gradient(to right, #0d2151, #0f39ab);
+  border: 3px solid white;
+ color: white;
+}

@@ -1,10 +1,10 @@
-import React, { use } from 'react';
-import { NavLink } from 'react-router';
+import React, { use} from 'react';
+import { NavLink, useOutletContext } from 'react-router';
 import { AuthContext } from '../contexts/AuthContext/AuthContext';
 
 const Menu = () => {
 
-    const bookings = '';
+    const { bookings } = useOutletContext();
     const { user } = use(AuthContext);
 
 

@@ -6,9 +6,11 @@ import { AuthContext } from '../../contexts/AuthContext/AuthContext';
 import './Navbar.css'
 import { motion } from "motion/react"
 
-const Navbar = ({ toggleDarkMode, isDark }) => {
+const Navbar = ({ toggleDarkMode, isDark, bookings }) => {
     const { user, signOutUser } = use(AuthContext);
-    const [bookings, setBookings] = useState([]);
+    // const [bookings, setBookings] = useState([]);
+
+    console.log(bookings);
 
 
     const listItems = <>
@@ -31,7 +33,7 @@ const Navbar = ({ toggleDarkMode, isDark }) => {
                     font-bold text-xs md:text-sm dark-toggle">
                     {/* if bookings available, implement condition */}
                     My Bookings
-                    <div className="badge badge-sm text-white bg-blue-400 font-semibold text-xs bottom-2 w-2 rounded-full border-0 absolute">{bookings ? bookings : 0}</div>
+                    <div className="badge badge-sm text-white bg-blue-400 font-semibold text-xs bottom-2 w-2 rounded-full border-0 absolute">{bookings === 0 ? 0 : bookings}</div>
                 </NavLink>
                 :
                 ''
@@ -107,7 +109,7 @@ const Navbar = ({ toggleDarkMode, isDark }) => {
                                     user ?
                                         <div
                                             className='absolute '>
-                                            <div className=' relative top-12 right-1'>
+                                            <div className=' relative top-12 right-3 md:right-0'>
 
                                                 <motion.img
                                                     src="https://img.icons8.com/?size=100&id=ClCGsFRdf5gA&format=png&color=000000"
@@ -121,7 +123,7 @@ const Navbar = ({ toggleDarkMode, isDark }) => {
                                         :
                                         <div
                                             className='absolute '>
-                                            <div className=' relative top-14 right-28 md:right-35 md:top-12 lg:top-14 lg:right-28'>
+                                            <div className='z-10 relative top-14 right-28 md:right-35 md:top-12 lg:top-14 lg:right-28'>
 
                                                 <motion.img
                                                     src="https://img.icons8.com/?size=100&id=ClCGsFRdf5gA&format=png&color=000000"
@@ -204,14 +206,14 @@ const Navbar = ({ toggleDarkMode, isDark }) => {
                             </div>
                             :
                             <div className='space-x-1 md:space-x-2'>
-                                <NavLink className="p-3 rounded-xl text-blue-400
+                                <NavLink className="p-2 md:p-3 rounded-xl text-blue-400
                             bg-white/10 backdrop-blur-md border border-white/20 
                             transition-all duration-300 hover:bg-gradient-to-r hover:from-blue-500 hover:to-sky-400 
                             hover:text-white 
                                 font-bold text-xs md:text-sm dark-toggle" to="/register">SignUp</NavLink>
                                 <span className='text-blue-500  p-1 text-xs md:text-sm md:text-md font-bold'>/</span>
 
-                                <NavLink className="p-3 rounded-xl text-blue-400
+                                <NavLink className="p-2 md:p-3  rounded-xl text-blue-400
                             bg-white/10 backdrop-blur-md border border-white/20 
                             transition-all duration-300 hover:bg-gradient-to-r hover:from-blue-500 hover:to-sky-400 
                             hover:text-white font-bold text-xs md:text-sm dark-toggle" to="/login">LogIn</NavLink>
