@@ -16,6 +16,7 @@ const AddPackage = () => {
             guide_photo: user?.photoURL,
             price: parseFloat(data.price),
             duration: parseInt(data.duration),
+            bookingCount: 0
         };
 
         try {

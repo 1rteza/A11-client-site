@@ -11,14 +11,30 @@ import Swal from 'sweetalert2';
 
 const PackageDetails = () => {
 
-    const { _id, tour_name, image, duration, departure_location, destination, price, departure_date, package_details, guide_name, guide_email, guide_photo, guide_contact_no, bookingCount } = useLoaderData();
+    const data = useLoaderData();
+    const {
+        _id,
+        tour_name,
+        image,
+        duration,
+        departure_location,
+        destination,
+        price,
+        departure_date,
+        package_details,
+        guide_name,
+        guide_email,
+        guide_photo,
+        guide_contact_no,
+    } = data;
 
+    const [bookingCount, setBookingCount] = useState(data.bookingCount || 0);
 
     const { user } = use(AuthContext);
     const [showModal, setShowModal] = useState(false);
     const [specialNote, setSpecialNote] = useState("");
 
-    // Handle booking submission
+
     const handleBooking = async (e) => {
         e.preventDefault();
 
@@ -42,7 +58,6 @@ const PackageDetails = () => {
         axios
             .post("https://chill-and-travel-server.vercel.app/bookings", newBooking)
             .then(res => {
-                console.log(res.data);
                 if (res.data.insertedId) {
                     Swal.fire({
                         position: "top-end",
@@ -52,19 +67,33 @@ const PackageDetails = () => {
                         timer: 1500
                     });
                     setShowModal(false);
+                    setBookingCount(prev => prev + 1);
+                }
+                else {
+                    Swal.fire({
+                        icon: "error",
+                        title: "Oops...",
+                    });
                 }
             })
-            .catch(err => console.error(err));
+            .catch(err => {
+                console.log(err);
+                Swal.fire({
+                    icon: "error",
+                    title: "Oops...",
+                    text: "Something went wrong!"
+                });
+            });
 
     };
 
     return (
-        <div className="bg-gradient-to-br from-sky-100 via-blue-200 to-sky-300 text-blue-600 min-h-screen p-6 dark-toggle back">
+        <div className="bg-gradient-to-br from-sky-100 via-blue-200 to-sky-300 text-blue-600 min-h-screen p-6 pt-8 dark-toggle back">
             <ScrollToTopButton />
             <Menu />
 
             {/* Tour Card */}
-            <div className="max-w-4xl mx-auto bg-white/80 backdrop-blur-md rounded-2xl shadow-xl overflow-hidden dark-toggle banner">
+            <div className="max-w-4xl mx-auto bg-white/80 backdrop-blur-md rounded-2xl shadow-xl overflow-hidden dark-toggle banner ">
                 <img src={image} alt={tour_name} className="w-full h-72 object-cover" />
 
                 <div className="p-6">
@@ -90,7 +119,7 @@ const PackageDetails = () => {
                         <p><span className="font-semibold ">Price:</span> <span className='text-green-500'> ${price}</span></p>
                         <p><span className="font-semibold">Departure:</span> {departure_location} ({departure_date})</p>
                         <p><span className="font-semibold">Destination:</span> {destination}</p>
-                        <p><span className="font-semibold">Bookings:</span> {bookingCount}</p>
+                        <p><span className="font-semibold ">Bookings:</span> <span className='text-green-500 text-lg'>{bookingCount}</span> </p>
                     </div>
 
                     {/* Description */}
