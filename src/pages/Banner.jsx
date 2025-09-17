@@ -31,7 +31,7 @@ const Banner = () => {
             globeRef.current.controls().enablePan = false;
             globeRef.current.controls().enableRotate = false;
             globeRef.current.controls().autoRotate = true;
-            globeRef.current.controls().autoRotateSpeed = 0.8;
+            globeRef.current.controls().autoRotateSpeed = 5;
         }
 
         return () => window.removeEventListener("resize", handleResize);
@@ -40,9 +40,9 @@ const Banner = () => {
 
 
     return (
-        <div className="banner  bg-gradient-to-br from-sky-100 via-blue-200 to-sky-300 text-blue-500 dark-toggle ">
+        <div className="banner min-h-screen bg-gradient-to-br from-sky-100 via-blue-200 to-sky-300 text-blue-500 dark-toggle ">
 
-            <div className='flex flex-col justify-center items-center text-center pb-15'>
+            <div className='flex flex-col justify-center items-center text-center py-15'>
 
                 <div className="  pointer-events-none ">
                     <Link  to="/allPackages">

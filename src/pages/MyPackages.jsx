@@ -61,11 +61,11 @@ const ManageMyPackages = () => {
     // };
 
     return (
-        <div className="min-h-screen bg-gradient-to-br from-sky-100 via-blue-200 to-sky-300 text-blue-500 dark-toggle back">
+        <div className=" bg-gradient-to-br from-sky-100 via-blue-200 to-sky-300 text-blue-500 dark-toggle back pb-10">
             <ScrollToTopButton />
             <Menu />
 
-            <div className="p-5 md:p-10">
+            <div className="p-5 md:p-10 py-20">
                 <h1 className="text-3xl font-bold mb-6 text-center">Manage My Packages</h1>
 
                 {packages.length === 0 ? (

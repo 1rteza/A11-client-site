@@ -181,7 +181,7 @@ const Navbar = ({ toggleDarkMode, isDark, bookings }) => {
     hover:text-white 
         font-bold text-xs md:text-sm dark-toggle'>
                                         <p className="">
-                                            Add Package
+                                            Add Tour Package
                                         </p>
                                     </NavLink>
                                     <NavLink to="/myPackages" className='px-4 mx-3 rounded-xl text-blue-400
