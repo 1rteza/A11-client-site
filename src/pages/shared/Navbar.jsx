@@ -109,7 +109,7 @@ const Navbar = ({ toggleDarkMode, isDark, bookings }) => {
                                     user ?
                                         <div
                                             className='absolute '>
-                                            <div className=' relative top-12 right-3 md:right-0'>
+                                            <div className=' relative top-12 right-1 md:right-0 z-30'>
 
                                                 <motion.img
                                                     src="https://img.icons8.com/?size=100&id=ClCGsFRdf5gA&format=png&color=000000"
@@ -123,7 +123,7 @@ const Navbar = ({ toggleDarkMode, isDark, bookings }) => {
                                         :
                                         <div
                                             className='absolute '>
-                                            <div className='z-10 relative top-14 right-28 md:right-35 md:top-12 lg:top-14 lg:right-28'>
+                                            <div className='z-30 relative top-12 right-25 md:right-35 md:top-12 lg:top-14 lg:right-28 '>
 
                                                 <motion.img
                                                     src="https://img.icons8.com/?size=100&id=ClCGsFRdf5gA&format=png&color=000000"
@@ -137,7 +137,7 @@ const Navbar = ({ toggleDarkMode, isDark, bookings }) => {
                                 }
                             </>
                     }
-                    <label className="swap swap-rotate mr-1 md:mr-3 z-10">
+                    <label className="swap swap-rotate mr-1 md:mr-3 z-40">
                         {/* this hidden checkbox controls the state */}
                         <input type="checkbox" onClick={toggleDarkMode} />
 

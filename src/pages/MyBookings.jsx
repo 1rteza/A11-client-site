@@ -124,7 +124,7 @@ const MyBookings = () => {
                                                     Confirm
                                                 </button>
                                             ) : (
-                                                <button className="btn btn-sm btn-disabled">Confirmed</button>
+                                                <button className="btn btn-sm rounded-xl border-0 btn-disabled">Confirmed</button>
                                             )}
                                         </td>
                                     </tr>

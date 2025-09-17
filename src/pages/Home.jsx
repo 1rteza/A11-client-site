@@ -3,6 +3,7 @@ import Banner from './Banner';
 import FeaturedPackages from './FeaturedPackages';
 import ScrollToTopButton from './ScrollToTopButton';
 import About from './About';
+import Travel from './Travel';
 
 const Home = () => {
     return (
@@ -11,6 +12,7 @@ const Home = () => {
             <Banner></Banner>
             <ScrollToTopButton/>
             <FeaturedPackages></FeaturedPackages>
+            <Travel></Travel>
             <About></About>
         </div>
 
