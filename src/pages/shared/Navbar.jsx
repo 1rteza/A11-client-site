@@ -8,9 +8,6 @@ import { motion } from "motion/react"
 
 const Navbar = ({ toggleDarkMode, isDark, bookings }) => {
     const { user, signOutUser } = use(AuthContext);
-    // const [bookings, setBookings] = useState([]);
-
-    console.log(bookings);
 
 
     const listItems = <>
@@ -33,7 +30,7 @@ const Navbar = ({ toggleDarkMode, isDark, bookings }) => {
                     font-bold text-xs md:text-sm dark-toggle">
                     {/* if bookings available, implement condition */}
                     My Bookings
-                    <div className="badge badge-sm text-white bg-blue-400 font-semibold text-xs bottom-2 w-2 rounded-full border-0 absolute">{bookings === 0 ? 0 : bookings}</div>
+                    <div className="badge badge-sm text-white bg-blue-400 font-semibold text-xs bottom-2 w-2 rounded-full border-0 absolute">{bookings ? bookings : 0}</div>
                 </NavLink>
                 :
                 ''

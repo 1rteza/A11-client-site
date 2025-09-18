@@ -14,7 +14,11 @@ const RootLayout = () => {
         if (!user) return;
         try {
             const res = await fetch(
-                `https://chill-and-travel-server.vercel.app/bookings?email=${user.email}`
+                `https://chill-and-travel-server.vercel.app/bookings?email=${user.email}`, {
+                headers: {
+                    authorization: `Bearer ${user.accessToken}`
+                }
+            }
             );
             const data = await res.json();
             setBookings(data.length);

@@ -11,8 +11,6 @@ const FeaturedPackages = () => {
 
     const featuredPackages = packages.slice(0, 6);
 
-    console.log(featuredPackages);
-
 
     return (
         <div className="banner flex flex-col justify-center items-center text-center  bg-gradient-to-br from-sky-100 via-blue-200 to-sky-300 text-blue-500 dark-toggle py-5 md:py-10 p-2 md:p-5">

@@ -11,7 +11,7 @@ const Packages = () => {
     const [search, setSearch] = useState("");
 
     // Filter packages based on search
-    const filteredPackages = packages.filter(pkg =>
+    const filteredPackages = packages?.filter(pkg =>
         pkg.tourName?.toLowerCase().includes(search?.toLowerCase()) ||
         pkg.destination?.toLowerCase().includes(search?.toLowerCase())
     );

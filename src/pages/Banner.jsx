@@ -4,7 +4,6 @@ import './Banner.css'
 import { Link, NavLink } from 'react-router';
 import { AuthContext } from '../contexts/AuthContext/AuthContext';
 import Menu from './Menu';
-import GlobeBanner from './GlobeBanner';
 import Globe from "react-globe.gl";
 
 

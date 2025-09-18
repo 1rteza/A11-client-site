@@ -5,11 +5,8 @@ import { Link } from 'react-router';
 
 const FeaPack = ({ feaPack }) => {
 
-    console.log(feaPack);
-
     const { _id,image, tour_name, guide_name, guide_photo, duration, departure_date, price } = feaPack;
 
-    console.log(image);
 
     return (
         <motion.div

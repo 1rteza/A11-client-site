@@ -5,21 +5,32 @@ import ScrollToTopButton from "./ScrollToTopButton";
 import { motion } from "motion/react"
 import Menu from "./Menu";
 import './Modal.css'
+import Loading from "./Loading";
 
 const ManageMyPackages = () => {
     const { user } = useContext(AuthContext);
     const [showModal, setShowModal] = useState(false);
     const [packages, setPackages] = useState([]);
+    const [loading, setLoading] = useState(true);
     const [selectedPackage, setSelectedPackage] = useState(null);
 
-
+    const accessToken = user.accessToken;
 
     useEffect(() => {
-        if (!user?.email) return;
-        fetch(`https://chill-and-travel-server.vercel.app/tourPackages?email=${user.email}`)
-            .then((res) => res.json())
-            .then((data) => setPackages(data))
-            .catch((err) => console.error(err));
+        if (user?.email) {
+            fetch(`https://chill-and-travel-server.vercel.app/tourPackages?email=${user.email}`, {
+                // headers: {
+                //     authorization: `Bearer ${accessToken}`
+                // }
+            })
+                .then((res) => res.json())
+                .then((data) => setPackages(data))
+                .catch((err) => console.error(err))
+                .finally(() => setLoading(false))
+        }
+        else {
+            setLoading(false);
+        }
     }, [user]);
 
 
@@ -54,70 +65,74 @@ const ManageMyPackages = () => {
         }
     };
 
-    // Handle update (basic placeholder — can open modal instead)
-    // const handleUpdate = (id) => {
-
-    //     setShowModal(true);
-    // };
 
     return (
-        <div className=" bg-gradient-to-br from-sky-100 via-blue-200 to-sky-300 text-blue-500 dark-toggle back pb-10">
+        <div className="min-h-screen bg-gradient-to-br from-sky-100 via-blue-200 to-sky-300 text-blue-500 dark-toggle back pb-10">
             <ScrollToTopButton />
             <Menu />
 
             <div className="p-5 md:p-10 py-20">
                 <h1 className="text-3xl font-bold mb-6 text-center">Manage My Packages</h1>
 
-                {packages.length === 0 ? (
-                    <p className="text-center text-gray-600">No packages found.</p>
-                ) : (
-                    <div className="overflow-x-auto rounded-lg">
-                        <table className="table-xs md:table-md xl:table-lg w-full dark-toggle text-center tableContainer">
-                            <thead className="tableHeader">
-                                <tr>
-                                    <th>Tour</th>
-                                    <th>Image</th>
-                                    <th>Duration</th>
-                                    <th>Price</th>
-                                    <th>Departure</th>
-                                    <th>Destination</th>
-                                    <th>Action</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {packages.map((pkg) => (
-                                    <tr key={pkg._id} className="tableRow">
-                                        <td className="font-semibold">{pkg.tour_name}</td>
-                                        <td className="">
-                                            <img src={pkg.image} alt="Tour" className="w-16 h-16 object-cover rounded-lg inline-block" />
-                                        </td>
-                                        <td>{pkg.duration}</td>
-                                        <td>${pkg.price}</td>
-                                        <td>{pkg.departure_location}</td>
-                                        <td>{pkg.destination}</td>
-                                        <td className="flex gap-2 justify-center">
-                                            <button
-                                                onClick={() => {
-                                                    setSelectedPackage(pkg); // pkg = current row’s package
-                                                    setShowModal(true);
-                                                }}
-                                                className="btn btn-sm rounded-xl font-semibold bg-gradient-to-r from-green-500 to-emerald-400 hover:from-green-600 hover:to-emerald-500 text-white border-0"
-                                            >
-                                                Update
-                                            </button>
-                                            <button
-                                                onClick={() => handleDelete(pkg._id)}
-                                                className="btn btn-sm rounded-xl font-semibold bg-gradient-to-r from-red-500 to-pink-400 hover:from-red-600 hover:to-pink-500 text-white border-0"
-                                            >
-                                                Delete
-                                            </button>
-                                        </td>
-                                    </tr>
-                                ))}
-                            </tbody>
-                        </table>
-                    </div>
-                )}
+                {
+                    loading ?
+                        <Loading />
+                        :
+                        (
+                            packages.length === 0 ? (
+                                <div className=' min-h-screen flex flex-col justify-center items-center text-center '>
+                                    <p className="text-center text-gray-600 text-4xl mb-20">No packages found.</p>
+                                </div>
+                            ) : (
+                                <div className="overflow-x-auto rounded-lg">
+                                    <table className="table-xs md:table-md xl:table-lg w-full dark-toggle text-center tableContainer">
+                                        <thead className="tableHeader">
+                                            <tr>
+                                                <th>Tour</th>
+                                                <th>Image</th>
+                                                <th>Duration</th>
+                                                <th>Price</th>
+                                                <th>Departure</th>
+                                                <th>Destination</th>
+                                                <th>Action</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            {packages.map((pkg) => (
+                                                <tr key={pkg._id} className="tableRow">
+                                                    <td className="font-semibold">{pkg.tour_name}</td>
+                                                    <td className="">
+                                                        <img src={pkg.image} alt="Tour" className="w-16 h-16 object-cover rounded-lg inline-block" />
+                                                    </td>
+                                                    <td>{pkg.duration}</td>
+                                                    <td>${pkg.price}</td>
+                                                    <td>{pkg.departure_location}</td>
+                                                    <td>{pkg.destination}</td>
+                                                    <td className="flex gap-2 justify-center items-center h-full  mt-5">
+                                                        <button
+                                                            onClick={() => {
+                                                                setSelectedPackage(pkg); // pkg = current row’s package
+                                                                setShowModal(true);
+                                                            }}
+                                                            className="btn btn-sm rounded-xl font-semibold bg-gradient-to-r from-green-500 to-emerald-400 hover:from-green-600 hover:to-emerald-500 text-white border-0"
+                                                        >
+                                                            Update
+                                                        </button>
+                                                        <button
+                                                            onClick={() => handleDelete(pkg._id)}
+                                                            className="btn btn-sm rounded-xl font-semibold bg-gradient-to-r from-red-500 to-pink-400 hover:from-red-600 hover:to-pink-500 text-white border-0"
+                                                        >
+                                                            Delete
+                                                        </button>
+                                                    </td>
+                                                </tr>
+                                            ))}
+                                        </tbody>
+                                    </table>
+                                </div>
+                            )
+                        )
+                }
             </div>
 
             {/* Booking Modal */}
