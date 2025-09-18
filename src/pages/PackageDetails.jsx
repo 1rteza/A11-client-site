@@ -54,7 +54,6 @@ const PackageDetails = () => {
             departure_location,
             destination,
         };
-
         axios
             .post("https://chill-and-travel-server.vercel.app/bookings", newBooking)
             .then(res => {

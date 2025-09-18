@@ -3,6 +3,8 @@ import { useForm } from "react-hook-form";
 import { AuthContext } from "../contexts/AuthContext/AuthContext";
 import './AddPackages.css'
 import Swal from "sweetalert2";
+import Menu from "./Menu";
+import ScrollToTopButton from "./ScrollToTopButton";
 
 const AddPackage = () => {
     const { user } = useContext(AuthContext);
@@ -61,7 +63,8 @@ const AddPackage = () => {
                 <h2 className="text-2xl font-bold text-center mb-6">
                     Add a New Tour Package
                 </h2>
-
+                <Menu/>
+                <ScrollToTopButton/>
                 <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
                     {/* Tour Name */}
                     <div>
@@ -91,6 +94,7 @@ const AddPackage = () => {
                         <input
                             {...register("duration", { required: true })}
                             type="number"
+                            placeholder="e.g., 3"
                             min="1"
                             className="input input-bordered w-full"
                         />
@@ -124,7 +128,6 @@ const AddPackage = () => {
                         <input
                             {...register("price", { required: true })}
                             type="number"
-                            min="1"
                             placeholder="e.g., 10000"
                             className="input input-bordered w-full"
                         />
@@ -144,7 +147,7 @@ const AddPackage = () => {
                     <div>
                         <label className="block mb-1 font-medium">Contact Number</label>
                         <input
-                            {...register("contact_no", { required: true })}
+                            {...register("guid_contact_no", { required: true })}
                             type="tel"
                             placeholder="+8801XXXXXXXXX"
                             className="input input-bordered w-full"

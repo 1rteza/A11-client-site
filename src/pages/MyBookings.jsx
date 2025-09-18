@@ -15,15 +15,15 @@ const MyBookings = () => {
     const [bookings, setBookings] = useState([]);
     const [loading, setLoading] = useState(true);
     const { fetchBookings } = useOutletContext();
-    
-    const accessToken = user.accessToken
 
+    const accessToken = user.accessToken;
 
     useEffect(() => {
+        const token = user.getIdToken();
         if (user?.email) {
             fetch(`https://chill-and-travel-server.vercel.app/bookings?email=${user.email}`, {
                 headers: {
-                    authorization: `Bearer ${accessToken}`
+                    authorization: `Bearer ${token}`
                 }
             })
                 .then((res) => res.json())
@@ -102,12 +102,13 @@ const MyBookings = () => {
                                                 <th>Location</th>
                                                 <th>Destination</th>
                                                 <th>Special Note</th>
+                                                <th>Price</th>
                                                 <th>Status</th>
                                                 <th>Action</th>
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            {bookings.map((booking) => (
+                                            {bookings?.map((booking) => (
                                                 <tr key={booking._id} className="tableRow">
                                                     <td className="font-semibold">{booking.tour_name}</td>
                                                     <td>
@@ -122,6 +123,7 @@ const MyBookings = () => {
                                                     <td>{booking.departure_location}</td>
                                                     <td>{booking.destination}</td>
                                                     <td>{booking.notes || "—"}</td>
+                                                    <td>{booking.price}</td>
                                                     <td>
                                                         <span
                                                             className={`badge ${booking.status === "confirmed"
