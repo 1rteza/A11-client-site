@@ -29,24 +29,28 @@ const AddPackage = () => {
                     headers: { "Content-Type": "application/json" },
                     body: JSON.stringify(packageData),
                 }
-            );
+            )
+                .then(res => res.json())
+                .then(data => {
+                    if (data.insertedId) {
+                        Swal.fire({
+                            position: "top-end",
+                            icon: "success",
+                            title: "Your tour package has been created",
+                            showConfirmButton: false,
+                            timer: 1500
+                        });
+                        reset();
+                    } else {
+                        Swal.fire({
+                            icon: "error",
+                            title: "Oops...",
+                            text: "Something went wrong!"
+                        });
+                    }
+                })
 
-            if (res.ok) {
-                Swal.fire({
-                    position: "top-end",
-                    icon: "success",
-                    title: "Your tour package has been created",
-                    showConfirmButton: false,
-                    timer: 1500
-                });
-                reset();
-            } else {
-                Swal.fire({
-                    icon: "error",
-                    title: "Oops...",
-                    text: "Something went wrong!"
-                });
-            }
+
         } catch (err) {
             console.error(err);
             Swal.fire({
@@ -63,8 +67,8 @@ const AddPackage = () => {
                 <h2 className="text-2xl font-bold text-center mb-6">
                     Add a New Tour Package
                 </h2>
-                <Menu/>
-                <ScrollToTopButton/>
+                <Menu />
+                <ScrollToTopButton />
                 <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
                     {/* Tour Name */}
                     <div>

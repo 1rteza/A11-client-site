@@ -19,9 +19,9 @@ const ManageMyPackages = () => {
     useEffect(() => {
         if (user?.email) {
             fetch(`https://chill-and-travel-server.vercel.app/tourPackages?email=${user.email}`, {
-                // headers: {
-                //     authorization: `Bearer ${accessToken}`
-                // }
+                headers: {
+                    authorization: `Bearer ${accessToken}`
+                }
             })
                 .then((res) => res.json())
                 .then((data) => setPackages(data))

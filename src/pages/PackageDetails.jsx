@@ -57,7 +57,7 @@ const PackageDetails = () => {
         axios
             .post("https://chill-and-travel-server.vercel.app/bookings", newBooking)
             .then(res => {
-                if (res.data.insertedId) {
+                if (res.data.success) {
                     Swal.fire({
                         position: "top-end",
                         icon: "success",

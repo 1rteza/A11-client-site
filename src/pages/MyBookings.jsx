@@ -18,12 +18,12 @@ const MyBookings = () => {
 
     const accessToken = user.accessToken;
 
+
     useEffect(() => {
-        const token = user.getIdToken();
         if (user?.email) {
             fetch(`https://chill-and-travel-server.vercel.app/bookings?email=${user.email}`, {
                 headers: {
-                    authorization: `Bearer ${token}`
+                    authorization: `Bearer ${accessToken}`
                 }
             })
                 .then((res) => res.json())
@@ -73,7 +73,7 @@ const MyBookings = () => {
             });
         }
     };
-
+console.log(bookings);
     return (
         <div className='min-h-screen bg-gradient-to-br from-sky-100 via-blue-200 to-sky-300 text-blue-500 dark-toggle back'>
             <ScrollToTopButton />
